@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/milligram.css" />
+  </head>
+  <body>
+    <div id="loader" class="loading d-none"></div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+            
+                <label for="">Product Name</label>
+                <input type="text" id="ProductName">
+
+                <label for="">Product Code</label>
+                <input type="text" id="ProductCode">
+
+                <label for="">Img</label>
+                <input type="text" id="Img">
+
+                <label for="">Qty</label>
+                <input type="text" id="Qty">
+
+                <label for="">Unit Price</label>
+                <input type="text" id="UnitPrice">
+
+                <label for="">Total Price</label>
+                <input type="text" id="TotalPrice">
+
+
+                <button onclick="Createdata()">Submit</button>
+            
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/axios.min.js"></script>
+
+    <script>
+
+
+ async function Createdata() {
+    let ProductName=document.getElementById("ProductName").value
+    let ProductCode=document.getElementById("ProductCode").value
+    let Img=document.getElementById("Img").value
+    let Qty=document.getElementById("Qty").value
+    let UnitPrice=document.getElementById("UnitPrice").value
+    let TotalPrice=document.getElementById("TotalPrice").value
+
+    let URL = "http://164.68.107.70:6060/api/v1/CreateProduct";
+
+    
+    document.getElementById("loader").classList.remove("d-none")
+
+    let res=await axios.post(URL,{
+        ProductName:ProductName,
+        ProductCode:ProductCode,
+        Img:Img,
+        Qty:Qty,
+        UnitPrice:UnitPrice,
+        TotalPrice:TotalPrice
+     })
+  document.getElementById("loader").classList.add("d-none")
+
+
+if(res.status===200){
+    window.location="index.html"
+}
+else{
+    console.log("Error")
+    
+}
+
+ }
+
+    </script>
+  </body>
+</html>
