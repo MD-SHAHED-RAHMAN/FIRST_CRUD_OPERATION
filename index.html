@@ -41,7 +41,7 @@
           let list = res.data["data"];
 
           list.forEach((item) => {
-            document.getElementById("body").innerHTML += `<tr>
+            document.getElementById("body").innerHTML +=( `<tr>
                 <td>${item["ProductName"]}</td>
                  <td>${item["ProductCode"]}</td>
                   <td>${item["Qty"]}</td>
@@ -50,7 +50,7 @@
                  <td><button onclick="deleteItem('${item['_id']}')">Delete</button></td>
                        <td><button onclick="updateItem('${item['_id']}')">Update</button></td>
 
-         </tr>`
+         </tr>`)
           });
         }
         else{
@@ -75,6 +75,15 @@
       }
 
       Readdata();
+
+
+
+
+      async function updateItem(id) {
+      window.location=`update.html?id=${id}`
+   }
+        
+      
     </script>
   </body>
 </html>
